@@ -32,3 +32,6 @@ methods: {
     this.count += n
   }
 }
+
+
+ref: https://vuejs.org/guide/components/events.html
