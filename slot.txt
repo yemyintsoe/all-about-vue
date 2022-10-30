@@ -1,0 +1,48 @@
+We use props to pass js data in any data type. but when its come to pass template, we have to use slots
+
+// parent component
+<FancyButton>
+  <h4>Click me! </h4> <!-- slot content -->
+</FancyButton>
+
+
+// child component
+<button class="fancy-btn">
+  <slot></slot> <!-- slot outlet -->
+</button>
+
+ref: https://vuejs.org/guide/components/slots.html
+
+
+
+# Named Slots
+
+// child component
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
+</div>
+
+
+
+// parent component
+<BaseLayout>
+  <template v-slot:header>
+    Header content
+  </template>
+    <template v-slot:default>
+    Main content
+  </template>
+    <template v-slot:footer>
+    Footer content
+  </template>
+</BaseLayout>
+
+ref: https://vuejs.org/guide/components/slots.html#named-slots
