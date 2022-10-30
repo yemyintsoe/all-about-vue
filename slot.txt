@@ -40,7 +40,7 @@ ref: https://vuejs.org/guide/components/slots.html
     <template v-slot:default>
     Main content
   </template>
-    <template v-slot:footer>
+    <template #footer> //v-slot shorthand is #
     Footer content
   </template>
 </BaseLayout>
