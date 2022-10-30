@@ -1,0 +1,25 @@
+// we can use provide & inject feature to pass data from parent level component to child, grandson, etc...
+
+// parent component
+export default {
+  data() {
+    return {
+      message: 'hello!'
+    }
+  },
+  provide() {
+    return {
+      message: this.message
+    }
+  }
+}
+
+// child component
+export default {
+  inject: ['message'],
+  data() {
+    return {
+      fullMessage: this.message
+    }
+  }
+}
