@@ -1,0 +1,44 @@
+//*** sometimes we have multiple components in a component but we want to display just only one component and we want to change another component by clicking on buttons and if we do like the following, it is not a good habit.
+
+# template
+<button @click="activeTag = 'tagA'">TagA</button>
+<button @click="activeTag = 'tagB'">TagA</button>
+<button @click="activeTag = 'tagC'">TagA</button>
+<TagA if="activeTag === 'tagA' " />
+<TagB if="activeTag === 'tagB' " />
+<TagC if="activeTag === 'tagC' " />
+
+# js
+data(){
+  return {
+    activeTag: "TagA"
+  }
+}
+
+
+//*** vue officially provide to switch component from one to another just like the following...
+# template
+<button @click="activeTag = 'tagA'">TagA</button>
+<button @click="activeTag = 'tagB'">TagA</button>
+<button @click="activeTag = 'tagC'">TagA</button>
+<component :is="activeTag"></component>
+
+# js
+data(){
+  return {
+    activeTag: "TagA"
+  }
+}
+
+- In the example above, the value passed to :is can contain either:
+- the name string of a registered component, OR
+- the actual imported component object
+
+
+// *** We can also force the inactive components to stay "alive" with the built-in <KeepAlive> component.
+# template
+<keep-alive>
+  <component :is="activeTag"></component>
+</keep-alive>
+
+ref: https://vuejs.org/guide/essentials/component-basics.html#dynamic-components
