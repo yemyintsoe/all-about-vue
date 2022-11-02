@@ -2,8 +2,8 @@
 
 # template
 <button @click="activeTag = 'tagA'">TagA</button>
-<button @click="activeTag = 'tagB'">TagA</button>
-<button @click="activeTag = 'tagC'">TagA</button>
+<button @click="activeTag = 'tagB'">TagB</button>
+<button @click="activeTag = 'tagC'">TagC</button>
 <TagA if="activeTag === 'tagA' " />
 <TagB if="activeTag === 'tagB' " />
 <TagC if="activeTag === 'tagC' " />
@@ -19,8 +19,8 @@ data(){
 //*** vue officially provide to switch component from one to another just like the following...
 # template
 <button @click="activeTag = 'tagA'">TagA</button>
-<button @click="activeTag = 'tagB'">TagA</button>
-<button @click="activeTag = 'tagC'">TagA</button>
+<button @click="activeTag = 'tagB'">TagB</button>
+<button @click="activeTag = 'tagC'">TagC</button>
 <component :is="activeTag"></component>
 
 # js
