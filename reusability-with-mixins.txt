@@ -1,0 +1,39 @@
+### when we have the same functions for multiple components, we may code the duplicated codes(functions) for each components,
+### but this is not good habit, so that mixins comes in handay
+
+## src> mixins> counter.js
+export default{
+  data(){
+    return {
+      count: 0,
+    }
+  },
+  methods: {
+    incrementCounter(){
+      this.count ++
+    }
+  }
+}
+
+
+## ComponentA.vue
+# template
+<button @click="incrementCounter">Increment </button>
+
+#js
+import MixinsCounter from '../mixins/counter'
+export default {
+  mixins: [MixinsCounter]
+}
+
+
+
+## ComponentB.vue
+# template
+<button @click="incrementCounter">Increment </button>
+
+#js
+import MixinsCounter from '../mixins/counter'
+export default {
+  mixins: [MixinsCounter]
+}
