@@ -26,6 +26,11 @@ setup() {
   immediate: true   // to watch the variable immediately in fisrt load of the browser
   })
   
+  # OR 
+  watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {
+    /* ... */
+  })
+  
   return {
     name,
   }
