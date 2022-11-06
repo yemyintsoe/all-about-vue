@@ -1,0 +1,21 @@
+### we use "ref()" and "reactive()" for reactivity
+# let's have a look at plain variable without "ref()" and "reactive()"
+
+# template
+<div> {{ name }} </div> // template will show "Ye Myint Soe" not "Lin Khant Ko"
+
+# js
+export default {
+  setup(){
+    let name = 'Ye Myint Soe'
+    setTimeOut(() => {
+      name = 'Lin Khant Ko'
+      console.log(name) // console will show "Lin Khant Ko" not "Ye Myint Soe"
+    },2000)
+    return {
+      name
+    }
+  }
+}
+
+# as we see, if we don't use "ref()" or "reactive()", variable can not be changed
