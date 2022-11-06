@@ -1,0 +1,74 @@
+### we use "provide" and "inject" functions to pass data from parent component to child components
+## ===== Let's do with the static value =====
+# parent component
+import { provide } from 'vue'
+
+setup() {
+  // provide(label for the value, the actual value)
+  provide('userName', 'Conor Murphy')
+}
+
+
+# child component
+import { inject } from 'vue'
+
+setup() {
+  // inject(name that had provided from the parent, the default value if there is no provided value from the parent)
+  const userName = inject('userName', 'default user name')
+  
+  return {
+    userName
+  }
+}
+
+
+## ===== let's do with "ref()" and "reactive()" funcction =====
+# parent component
+import { provide, ref, reactive, toRefs } from 'vue'
+
+setup() {
+  const count = ref(0)
+  cosnt state = reactive({
+    firstName: 'Lin Khant'
+    lastName: 'Ko'
+  })
+  
+  # it's recomended to change the data from parent level component
+  function increment() {
+    count.value ++
+  }
+
+  provide('count', count)
+  provide('username', state)
+  provide('increment' increment)
+  
+  return {
+    count,
+    ...toRefs(state),
+    increment
+  }
+}
+
+
+# child component
+# template 
+<div> {{ count }} </div>
+<div> {{ firstName }}  {{ lastName }}</div>
+
+<button @click="increment"> increment </button>
+
+
+# js
+import { inject, toRefs } from 'vue'
+
+setup() {
+  const count = inject('count', 'default count')
+  const userName = inject('userName', {})
+  const increment = inject('increment')
+  
+  return {
+    count,
+    ...toRefs(userName),
+    increment
+  }
+}
