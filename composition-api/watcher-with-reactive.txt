@@ -1,0 +1,36 @@
+# when we watch "ref()" variable, there is no problem that we encountered, but there are a little bit problems when we watch "reactive()" variable
+
+setup() {
+  const state = reactive({
+    firstName: 'Ye Myint'
+    lastName: 'Soe'
+  })
+  
+  # NOT RECOMMENDED
+  # when we use "state" directly for data source, the "newValue" and "oldValue" are the same
+  watch(state, function(newValue, oldValue){
+    consloe.log(newValue.firstName, oldValue.firstName)
+    consloe.log(newValue.lastName, oldValue.lastName)
+  })
+  
+  # RECOMMENDE
+  # to overcome the same old and new outputting, we have to add the data source "state" like the following
+  watch(() => state, function(newValue, oldValue){
+    consloe.log(newValue.firstName, oldValue.firstName)
+    consloe.log(newValue.lastName, oldValue.lastName)
+  })
+  
+  # to watch just only one element from the reactive object
+  watch(() => state.firstName, function(newValue, oldValue){
+    consloe.log(newValue.firstName, oldValue.firstName)
+  })
+  
+  # we cannot add the data source just like the following, if we do just like the following, there will error
+  watch(state.firstName, function(newValue, oldValue){
+    consloe.log(newValue.firstName, oldValue.firstName)
+  })
+  
+  return {
+    ...toRefs(state)
+  }
+}
