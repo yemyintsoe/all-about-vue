@@ -1,0 +1,42 @@
+### we already know about how to make in option api, and now we are gonna look at in composition api
+
+## ===== ref() ======
+# teamplate
+<div> {{ count }} </div>
+<button @click="increment"> increment </button>
+
+# js
+setup() {
+  const count = ref(0)
+  function increment() {
+    count.value ++
+  }
+  return {
+    count,
+    increment
+  }
+}
+
+
+## ===== reactive() =====
+# teamplate
+<div> {{ first }} {{ last }} </div>
+<button @click="changeName"> Change Name </button>
+
+# js
+setup() {
+  const state = reactive({
+    first: 'Ye Myint',
+    last: 'Soe'
+  })
+  function changeName() {
+    state.first = 'Lin Khant'
+    state.last = 'Ko'
+  }
+  return {
+    ...toRefs(state), // if we have to return multiple variables, we have to spread out the "toRefs" function with "..."
+    changeName
+  }
+}
+
+## just like option api, there is no need to use methods: {} Object to create a method or function in composition api
