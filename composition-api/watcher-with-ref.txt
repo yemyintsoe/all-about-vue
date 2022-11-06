@@ -1,0 +1,32 @@
+import { ref, watch } from 'vue'
+
+setup() {
+  const name = ref('')
+  
+  // watch(variable that you wanna watch, callback function)
+  watch(name, (newValue, oldValue) => {
+    consloe.log(newValue, oldValue)
+  })
+  
+  return {
+    name,
+  }
+}
+
+### in watch function, we can watch multiple variables
+
+setup() {
+  const firstName = ref('')
+  const lastName = ref('')
+  
+  watch([firstName, lastName], (newValues, oldValues) => {
+    consloe.log(newValues[0], oldValues[0])
+    consloe.log(newValues[1], oldValues[1])
+  }, {
+  immediate: true   // to watch the variable immediately in fisrt load of the browser
+  })
+  
+  return {
+    name,
+  }
+}
