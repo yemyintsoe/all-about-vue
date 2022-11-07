@@ -1,0 +1,55 @@
+### we use "props" to receive data that have passed from the parent component
+## ===== opiton api =====
+# parent component
+# template
+// static value
+<ChildComponent greeting-message="hello" /> // we can declear key name just like html attribute
+// dynamic value
+<ChildComponent :greeting-message-two="msg" />
+
+# js
+data() {
+  return {
+    msg: 'What is up guys'
+  }
+}
+
+# child component
+# template
+<div> {{ greetingMessage }}</div>
+<div> {{ greetingMessageTwo }}</div>
+
+# js
+props: ['greetingMessage', 'grettingMessageTwo']  // we can access the variable with camelCase form
+
+
+## ===== composition api =====
+# parent component
+# template
+<input v-model="firstName"/>
+<input v-model="lastName"/>
+<ChildComponent :firstName="firstName" :lastName=lastName" />
+
+# js
+import { ref } from 'vue'
+setsup() {
+  const firstName = ref('')
+  const lastName = ref('')
+  return {
+    firstName, lastName
+  }
+}
+
+# child component
+# template
+<div> {{ fullName }} </div>
+
+# js
+import { computed } from 'vue'
+// we don't need "props" Object to receive data just like option, we just need to pass props in setup function as an argument
+setup(props) {
+  const fullNmae = computed(() => `${props.firstName} ${props.lastName}`)  // here we don't need to access props data using "this", we just need by using props dot
+  return {
+    fullName
+  }
+}
