@@ -1,0 +1,23 @@
+# we use "props" to receive data that have passed from the parent component
+
+# parent component
+# template
+// static value
+<ChildComponent greeting-message="hello" /> // we can declear key name just like html attribute
+// dynamic value
+<ChildComponent :greeting-message-two="msg" />
+
+# js
+data() {
+  return {
+    msg: 'What is up guys'
+  }
+}
+
+# child component
+# template
+<div> {{ greetingMessage }}</div>
+<div> {{ greetingMessageTwo }}</div>
+
+# js
+props: ['greetingMessage', 'grettingMessageTwo']  // we can access the variable with camelCase form
