@@ -1,0 +1,5 @@
+$ npm install -g @vue/cli
+$ vue create vue-router-app
+- select vue3 & the project will be created
+$ cd vue-router-app
+$ npm run serve
