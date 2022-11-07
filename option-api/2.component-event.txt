@@ -8,7 +8,8 @@ export default {
     submit() {
       this.$emit('someEvent')
     }
-  }
+  },
+  emits: ['someEvent']
 }
 
 // The parent component can then listen to it using v-on
@@ -22,6 +23,9 @@ export default {
 <button @click="$emit('increaseBy', 1)">
   Increase by 1
 </button>
+
+#js
+emits: ['someEvent']
 
 
 // parent component
