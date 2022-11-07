@@ -1,0 +1,29 @@
+# we use custom event to fire event from child to parent (also with a specific data)
+# child component
+# template
+<button @click="sendHero"> Click Me </button>
+
+# js
+setup(props, context) {
+  function sendHero() {
+    context.emit('sendHero', 'Wonder Woman')
+  }
+  return {
+    sendHero
+  }
+}
+emits: ['sendHero']
+
+# parent component
+# template
+<ChildComponent @sendHero="alertHereo" />
+
+# js
+setup() {
+  function alertHero(data) {
+    alert(data)
+  }
+  return {
+    alertHero
+  }
+}
