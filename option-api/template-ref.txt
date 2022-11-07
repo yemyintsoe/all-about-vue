@@ -1,0 +1,9 @@
+# we use "template ref" to access the element DOM just like document.getElementById in janilla js
+
+# template
+<input ref="username">
+
+# js
+mounted() {
+  this.$ref.username.focus() // we focus the input when the component mounted
+}
