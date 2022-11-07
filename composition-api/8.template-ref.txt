@@ -1,0 +1,28 @@
+### we use "template ref" to access the element DOM just like document.getElementById in janilla js
+
+## ===== let's see how in option api =====
+# template
+<input ref="username">
+
+# js
+mounted() {
+  this.$ref.username.focus() // we focus the input when the component mounted
+}
+
+
+# ===== let's see how in composition api =====
+# template
+<input ref="username">
+
+# js
+import { ref } from 'vue'
+setup() {
+  const username = ref(null)
+  onmounted(() => {
+    username.value.focus()
+  })
+  return {
+    username
+  }
+}
+
