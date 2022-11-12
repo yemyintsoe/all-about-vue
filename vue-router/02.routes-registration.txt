@@ -26,6 +26,9 @@ const router = createRouter({
 
 export default router;
 
+//main.js
+import router from './router/index'
+createApp(App).mount('#app')
 
 // App.vue
 <template>
@@ -33,5 +36,5 @@ export default router;
     <router-link to="/">Home</router-link>
     <router-link to="/about">About</router-link>
   </div>
-  <router-view />
+  <router-view />   // this will display the components that are registered for routes
 </template>
