@@ -1,0 +1,33 @@
+# we already known how to import components for routes registration. this kind of importing the components loads all components at once. this can lead our app slower. so it's recommended to use lazy loading, let's have a look at how...
+
+# these are normal importing of components & registration of routes
+
+import Home from '../views/Home.vue'
+import About from '../views/About.vue'
+
+const routes = [
+  {
+    path: '/',
+    component: Home
+  },
+  {
+    path: '/about',
+    component: About
+  }
+];
+
+
+# here are lazy loading importing of components & registration of routes
+
+const Home = () => import('../views/Home.vue')
+
+const routes = [
+  {
+    path: '/',
+    component: Home
+  },
+  {
+    path: '/about',
+    component: () => import('../views/About.vue')
+  }
+];
