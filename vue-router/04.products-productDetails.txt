@@ -1,0 +1,87 @@
+# the sample codes for
+- Products.vue
+- ProductCard.vue
+- Product.vue &
+- Loading Indicator
+
+<!-- router/index.js -->
+const Products = () => import('../views/Products.vue')
+const Product = () => import('../views/Product.vue')
+
+const routes = [
+    {
+        path: '/products',
+        component: Products
+    },
+    {
+        path: '/products/:id',
+        component: Product
+    },
+];
+
+<!-- Products.vue  -->
+<template>
+    <div class="container">
+        <div v-if="isLoading">Loading ... </div>
+        <div v-else class="col">
+            <ProductCard v-for="product in products" :key="product.id" :product="product" />               
+        </div>
+        </div>
+    </div>
+</template>
+
+<script setup>
+import ProductCard from './components/ProductCard.vue'
+import { ref, unMounted } from 'vue'
+    const products = ref([])
+    const isLoading = ref(true)
+
+    unMounted( async () => {
+        const result = await fetch('api-url')
+        const response = await result.json()
+        products.value = response
+        isLoading.value = false
+    })
+
+</script>
+
+<!-- ProductCard.vue  -->
+<template>
+    <div class="card">
+        <p>{{ product.name }}</p>
+        <p>{{ product.price }}</p>
+        <router-link :to="`/products/${product.id}`">Detail</router-link>
+    </div>    
+</template>
+<script setup>
+defineProps({
+  product: Object
+})
+
+</script>
+
+<!-- Product.vue  (this is product detail component)-->
+<template>
+    <div>
+        <p>{{ product.name }}</p>
+        <p>{{ product.price }}</p>
+    </div>
+</template>
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+
+const product = ref({})
+const route = useRoute()
+
+onMounted(async () => {
+    const result = await fetch(`api/products/${route.params.id}`)
+    const response = await result.json()
+    product.value = response
+})
+</script>
+
+### description
+# loader indicator
+- as you see, "isLoading" variable is assigned to "true" and it is assigned to "false" after api is fetched
+and it is used in template with "if" condition to display "Loading.. text depends on its assigned value (true, false)
