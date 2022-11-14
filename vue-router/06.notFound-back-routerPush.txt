@@ -1,0 +1,35 @@
+### NotFound
+# let's see how to do not found route
+
+// first create NotFoud.vue
+// then create route for NotFound page
+
+$const routes = [
+   { 
+     path: '/:pathMatch(.*)*',
+     name: 'NotFound',
+     component: NotFound
+   },
+];
+
+
+### Go Back
+
+<button @click="$router.back()">Go Back </button>
+
+
+### router push
+# if we type like "products/121212" which does not exist id of the product, NotFound action will not work, to work this, we have to do like the following
+
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+onMounted(async () => {
+    const result = await fetch(`api/products/${route.params.id}`)
+    if(result.status === 404) {
+      router.push({ name: 'Notfound' })
+    }
+    const response = await result.json()
+    product.value = response
+})
