@@ -27,4 +27,5 @@ import { ref, unMounted } from 'vue'
 </script>
 
 ### description
-# as you see, "isLoading" variable is assigned to "true" and it is assigned to "false" after api is fetched and it is used in template with "if" condition to display "Loading.. text depends on its assigned value (true, false)
+# as you see, "isLoading" variable is assigned to "true" and it is assigned to "false" after api is fetched
+and it is used in template with "if" condition to display "Loading.. text depends on its assigned value (true, false)
