@@ -1,0 +1,61 @@
+# if you feel like hard coded using route "path", then you can use route "name" like the following
+# you can also get the "parameter" from detail page with "defineProps" by adding "props: true" in route registration
+
+<!-- router/index.js -->
+$const routes = [
+  {
+    path: '/products',
+    name: 'Products',
+    component: Products
+  },
+   {
+    path: '/products/:id',
+    name: 'Product',
+    component: Product,
+    props: true
+  }
+]
+
+
+<!-- ProductCard.vue -->
+// old
+<router-link :to="`/products/${route.params.id}`"> Detail </router-link>
+// new
+<router-link :to="{ name: 'Product', params: { id: product.id } }"> Detail </router-link>
+
+
+
+<!-- Product -->
+// old
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+
+const product = ref({})
+const route = useRoute()
+
+onMounted(async () => {
+    const result = await fetch(`api/products/${route.params.id}`)
+    const response = await result.json()
+    product.value = response
+})
+</script>
+  
+// new
+<script setup>
+import { ref, onMounted } from 'vue'
+  const props = defineProps({
+    id: {   //this key is from route registration
+      type: String,
+      required: true
+    }
+ })
+ 
+ const product = ref({})
+ onMounted(async () => {
+    const result = await fetch(`api/products/${parseInt(props.id)}`)
+    const response = await result.json()
+    product.value = response
+})
+</script>
+
