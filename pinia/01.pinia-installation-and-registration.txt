@@ -1,0 +1,15 @@
+// install pinia in vue project
+$ yarn add pinia
+or
+$ npm install pinia
+
+
+// register pinia in vue project 
+# main.js
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import App from './App.vue'
+
+createApp(App)
+.use(createPinia())
+.mount('#app')
