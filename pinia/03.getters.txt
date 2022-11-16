@@ -1,0 +1,41 @@
+### getters 
+- we can access data from components using state, then why we need to use getters?
+- the reason is that when access data from state, we only get the original data of the state, and how about filtered data
+- to get the filtered data, we have to use getters feature
+
+# src/stores/TaskStore.js
+import { defineStore } from 'pinia'
+
+export const useTaskStore = defineStore('taskStore', {
+  state: () => {
+    return {
+      tasks: [
+        {id: 1, title: 'take a shawer', isFav: false},
+        {id: 2, title: 'have breakfast', isFav: false},
+        {id: 3, title: 'go to work', isFav: true}
+      ],
+      name: 'Pinia Course'
+    }
+  },
+  getters: {
+    // get the count of the favorite tasks
+    favCount() {
+      return this.tasks.reduce((previousValue, currentValue) => {
+        return currentValue.isFav ? previousValue + 1 : previouseValue 
+      }, 0)
+    }
+    
+    // get the count of the all tasks
+    allCount: (state) => {
+      return state.tasks.length
+    }
+  }
+  
+})
+
+# App.vue
+<div> {{ taskStore.favCount }} </div>
+
+# description
+- we use "this" keyword to access state in normal function
+- we pass "state" as a function argument to access state in JS ES6
