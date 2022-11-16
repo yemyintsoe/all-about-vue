@@ -1,3 +1,4 @@
+### how to define or create a store
 # src/stores/TaskStore.js
 
 import { defineStore } from 'pinia'
@@ -9,13 +10,31 @@ export const useTaskStore = defineStore('taskStore', {
         {id: 1, title: 'take a shawer', isFav: false},
         {id: 2, title: 'have breakfast', isFav: false},
         {id: 3, title: 'go to work', isFav: true}
-      ]
+      ],
+      name: 'Pinia Course'
     }
   }
 })
 
 
-# description
+## description
 - first, you have to import "defineStore" method from "pinia"
 - then define a store using it, defineStore method accept two parameters as arguments
 the first argument is "store name" and the second one is the object for some object like state, action, etc..
+
+
+### how to access state from the store
+# App.vue
+<template>
+  <div class="container">
+    <h4>{{ taskStore.name }}</h4>
+  </div>
+</template>
+<script setup>
+import { useTaskStore } from './stores/TaskStore'
+
+const taskStore = useTaskStore()
+</script>
+
+# description
+- to be able to access the state from the store, just import it and  assign it to a variable
