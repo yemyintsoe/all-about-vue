@@ -1,6 +1,6 @@
 ### getters 
 - we can access data from components using state, then why we need to use getters?
-- the reason is that when access data from state, we only get the original data of the state, and how about filtered data
+- the reason is that when access data from state, we only get the original data of the state, and how about computed data
 - to get the filtered data, we have to use getters feature
 
 # src/stores/TaskStore.js
