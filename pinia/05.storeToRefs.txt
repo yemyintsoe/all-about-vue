@@ -1,0 +1,27 @@
+### storeToRefs
+- we use storeToRefs to spread out the state and getters of the store
+- that means we don't need to taskStore.tasks or taskStore.taskFavs
+- we can simply use like tasks or taskFavs by sprading out using storeToRefs
+
+# App.vue
+<div v-for="task in tasks" :key="task.id">
+  <h5> {{ task.title }} </h5>
+</div>
+
+// js
+import { storeToRefs } from 'pinia'
+import { useTaskStore } from './stores/TaskStore'
+setup() {
+const taskStore = useTaskStore()
+
+const { tasks, taskFavs } = storeToRefs(taskStore)
+ 
+ return {
+  tasks,
+  taskFavs
+ }
+
+}
+
+# note
+- we cannot spread out the actions of the store, so that we have to call them from directly store name
