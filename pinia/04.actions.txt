@@ -1,0 +1,33 @@
+### actions
+- we use actions to make some actions for the components suchh as delete, edit, etc...
+
+# src/stores/TaskStore.js
+import { defineStore } from 'pinia'
+
+export const useTaskStore = defineStore('taskStore', {
+  state: () => {
+    return {
+      tasks: [
+        {id: 1, title: 'take a shawer', isFav: false},
+        {id: 2, title: 'have breakfast', isFav: false},
+        {id: 3, title: 'go to work', isFav: true}
+      ],
+      name: 'Pinia Course'
+    }
+  },
+  actions: {
+    deleteTask(id) {
+      this.tasks = this.tasks.filter(task => task.id != id)
+    }
+  }
+  
+})
+
+# App.vue
+<div>
+  {{ task.title }}
+   <i class="fa fa-trash" @click="taskStore.deleteTask(task.id)"></i>
+</div>
+
+# description
+- we can directly access the actions' name of the store from the components by importing the store names
